@@ -1,0 +1,13 @@
+.container {
+  text-align: center;
+}
+
+Form {
+  height: 200px;
+  background-color: darkcyan;
+  padding: 80px 20px 80px 40px;  
+}
+
+.hidden {
+  display: none;
+}
