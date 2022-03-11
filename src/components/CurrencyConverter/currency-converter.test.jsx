@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render, screen, fireEvent, findByTestId, getByTestId } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import CurrencyConverter from './currency-converter';
 import axiosMock from 'axios';
-import axios from '../../__mocks__/axios';
 
 describe('CurrencyConverter Test', () => {
 
@@ -15,7 +14,7 @@ describe('CurrencyConverter Test', () => {
   })
 
   it('must simulate a currency conversion', async () => {
-    const { findByTestId, getByTestId } = render(<CurrencyConverter />);
+    render(<CurrencyConverter />);
     axiosMock.get.mockResolvedValueOnce({
       data: {
         success: true,
@@ -25,10 +24,10 @@ describe('CurrencyConverter Test', () => {
         }
       }
     });
-    fireEvent.click(getByTestId('btnConverter'));
-    const modal = await findByTestId('modal');
+    fireEvent.click(screen.getByTestId('btnConverter'));
+    const result = await screen.findByTestId('result')
     expect(axiosMock.get).toHaveBeenCalledTimes(1);
-    expect(modal).toHaveTextContent('1 BRL = 0,24 USD');
+    expect(result).toHaveTextContent('1 BRL = 0.24 USD');
 })
 
 })

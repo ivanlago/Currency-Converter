@@ -108,7 +108,7 @@ function CurrencyConverter() {
           </Col>
 
           <Col sm='2'>
-            <Button variant='success' type='submit'>
+            <Button variant='success' type='submit' data-testid='btnConverter'>
               <span className={showSpinner ? null : 'hidden'}>
                 <Spinner animation='border' size='sm' />
               </span>
@@ -120,11 +120,11 @@ function CurrencyConverter() {
         </Row>
       </Form>
 
-      <Modal data-testid='modal' show={showModal} onHide={handleCloseModal}>
+      <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>Conversion</Modal.Header>
-        <Modal.Body>{resultConversion}</Modal.Body>
+        <Modal.Body data-testid='result'>{resultConversion}</Modal.Body>
         <Modal.Footer>
-          <Button data-testid="btnConverter" variant='success' onClick={handleCloseModal}>New Conversion</Button>
+          <Button variant='success' onClick={handleCloseModal}>New Conversion</Button>
         </Modal.Footer>
       </Modal>
 
